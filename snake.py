@@ -82,15 +82,24 @@ def snake_ran_out_of_bounds(snake):
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
+    if snake[0][0] < 0: #Out of bounds on the left side
+        return True
+    elif snake[0][0] > 29: #Out of bounds on the right side
+        return True
+    elif snake[0][1] < 0: #Out of bounds on the top side
+        return True
+    elif snake[0][1] > 29:#Out of bounds on the bottom side
+        return True
     return False
-
+    
+    
 def snake_intersected_body(snake):
     """Returns whether the snake has ran into itself.
     snake - list of 2-tuples representing the positions of each snake segment
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
-    return False
+   
 
 def get_score(snake):
     """Returns the current score of the game.
