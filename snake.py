@@ -101,7 +101,7 @@ def snake_intersected_body(snake):
     """
     
     for index in range(1, len(snake)):
-       if snake[0] == snake[index]: 
+       if snake[0] == snake[index]:
            return True
     return False
     
@@ -113,6 +113,10 @@ def get_score(snake):
     The user earns 10 points for each of the segments in the snake.
     For example, if the snake has 25 segments, the score is 250.
     """
+    for segment in snake:
+        segment = len(snake)
+        score = 10 * segment
+        return score
     return 0
 
 def get_game_over_text(score):
@@ -120,7 +124,12 @@ def get_game_over_text(score):
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    return 'Game Over.'
+    snake = get_initial_snake()
+    
+    game_over = snake_intersected_body(snake) or snake_ran_out_of_bounds(snake)
+    if game_over is True:
+        return 'Game Over. Score: ' + str(get_score(snake))
+    return 'Game Over. Score: ' + str(get_score(snake))
 
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
@@ -128,6 +137,7 @@ def get_snake_speed(snake):
     The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
     the speed of the game should increase (by how much is up to you).
     """
+    
     return 5
 
 def move_snake(snake, direction, food):
