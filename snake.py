@@ -99,6 +99,12 @@ def snake_intersected_body(snake):
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
+    
+    for index in range(1, len(snake)):
+       if snake[0] == snake[index]: 
+           return True
+    return False
+    
    
 
 def get_score(snake):
