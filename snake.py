@@ -124,12 +124,7 @@ def get_game_over_text(score):
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    snake = get_initial_snake()
-    
-    game_over = snake_intersected_body(snake) or snake_ran_out_of_bounds(snake)
-    if game_over is True:
-        return 'Game Over. Score: ' + str(get_score(snake))
-    return 'Game Over. Score: ' + str(get_score(snake))
+    return 'Game Over' + ' Score: ' + str(score)
 
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
