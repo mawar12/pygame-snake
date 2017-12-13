@@ -44,13 +44,22 @@ def get_direction(previous_direction, event_key):
     event_key - the event that the user pressed; one of https://www.pygame.org/docs/ref/key.html
     If event_key does not correspond with any of the arrows keys, return previous_direction.
     """
+    
     if event_key == pygame.K_LEFT:
+        if DIRECTION_RIGHT:
+            return previous_direction
         return DIRECTION_LEFT
-    elif event_key == pygame.K_UP:
+    if event_key == pygame.K_UP:
+        if DIRECTION_DOWN:
+            return previous_direction
         return DIRECTION_UP
-    elif event_key == pygame.K_RIGHT:
+    if event_key == pygame.K_RIGHT:
+        if DIRECTION_LEFT:
+            return previous_direction
         return DIRECTION_RIGHT
-    elif event_key == pygame.K_DOWN:
+    if event_key == pygame.K_DOWN:
+        if DIRECTION_UP:
+            return previous_direction
         return DIRECTION_DOWN
     return previous_direction
 
@@ -124,7 +133,7 @@ def get_game_over_text(score):
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    return 'Game Over' + ' Score: ' + str(score)
+    return 'Game Over.' + ' Score: ' + str(score)
 
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
@@ -132,7 +141,10 @@ def get_snake_speed(snake):
     The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
     the speed of the game should increase (by how much is up to you).
     """
-    
+    for food in snake:
+        if snake[0] == food:
+            if food == 5:
+                return 10
     return 5
 
 def move_snake(snake, direction, food):
